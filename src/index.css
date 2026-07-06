@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: toggle by adding .dark on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- Self-hosted brand type (reused from the original PantryPulse) ---- */
+@font-face {
+  font-family: "Apfel";
+  src: url("/fonts/apfel/ApfelGrotezk-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Apfel";
+  src: url("/fonts/apfel/ApfelGrotezk-Fett.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Apfel Brukt";
+  src: url("/fonts/apfel/ApfelGrotezk-Brukt.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Array";
+  src: url("/fonts/array/Array-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Array";
+  src: url("/fonts/array/Array-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Array";
+  src: url("/fonts/array/Array-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Array Wide";
+  src: url("/fonts/array/Array-BoldWide.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Design tokens ---- */
+@theme {
+  --font-sans: "Apfel", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Array", "Apfel", ui-sans-serif, sans-serif;
+  --font-wide: "Array Wide", "Array", sans-serif;
+
+  /* Single locked accent: brand ember orange */
+  --color-ember-50: #fff4ef;
+  --color-ember-100: #ffe4d8;
+  --color-ember-200: #ffc4ab;
+  --color-ember-300: #ff9d78;
+  --color-ember-400: #fb7550;
+  --color-ember-500: #f95738; /* primary accent (#F95738) */
+  --color-ember-600: #e23e20;
+  --color-ember-700: #bd2f16;
+  --color-ember-800: #942713;
+  --color-ember-900: #782413;
+
+  /* Warm brand support tints (used only as fills, never as competing CTAs) */
+  --color-tang: #ee964b;
+  --color-sun: #f4d35e;
+
+  /* Warm neutral base */
+  --color-cream: #f7f5ef;
+  --color-cream-100: #f1efe6;
+  --color-ink-950: #16130f;
+  --color-ink-900: #1e1a15;
+  --color-ink-800: #29241d;
+  --color-ink-700: #3a332a;
+
+  --radius-card: 1.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: var(--color-ink-900);
+  }
+  .dark body {
+    background-color: var(--color-ink-950);
+    color: var(--color-cream);
+  }
+  ::selection {
+    background: var(--color-ember-500);
+    color: #fff;
+  }
+}
+
+/* Reduced-motion safety net for any CSS transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dual-thumb calorie range slider (brand-styled) */
+.range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: var(--color-ember-500);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.range-thumb::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: var(--color-ember-500);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+  cursor: pointer;
+  pointer-events: auto;
+}
